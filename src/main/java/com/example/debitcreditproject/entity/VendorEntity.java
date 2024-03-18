@@ -15,5 +15,5 @@ public class VendorEntity {
 	@Column(name = "vendor_code", length = 15)
 	private String vendorCode;
 	@OneToMany(mappedBy = "vendor")
-	private List<PoEntity> purchaseOrders;
+  private List<PoEntity> purchaseOrders;	
 }

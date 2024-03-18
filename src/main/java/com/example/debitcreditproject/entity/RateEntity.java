@@ -1,25 +1,30 @@
 package com.example.debitcreditproject.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Date;
 
-@Setter
-@Getter
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Data
 @Entity
 public class RateEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	private Long oldrate;
+    @Column(name ="oldRate")
+    private Long oldRate;
 
-	private Long newRate;
+    @Column(name ="newRate")
+    private Long newRate;
 
-	private Long difference;
 
+    @Column(name="RateDate")
+    private Date date;
+
+    @OneToOne
+    @JoinColumn(name="poitems")
+    private PoItem poitems;
+    
 }

@@ -14,17 +14,8 @@ public class GrnEntity {
 	@Id
 	@Column(name = "grn_number", length = 15)
 	private String grnNumber;
-	@Column(name = "grn_data")
+	
+	@Column(name = "grn_date")
 	private String grnDate;
-
-//This scenario occurs when a single purchase order is fulfilled through multiple deliveries 
-	@ManyToOne
-	@JoinColumn(name = "po_no")
-	private PoEntity po;
-	@OneToOne(mappedBy = "grn")
-	private InvoiceEntity invoice;
-
-//	@OneToMany(mappedBy = "grn", cascade = CascadeType.ALL)
-//	private List<GrnEntity> items = new ArrayList<>();
 
 }

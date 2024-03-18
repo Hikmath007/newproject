@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 import lombok.Getter;
@@ -20,11 +21,6 @@ public class InvoiceEntity {
 	@Id
 	@Column(name = "invoice_number", length = 16)
 	private String invoiceNumber;
-
-	
-
-	@Column(name = "total")
-	private Long total;
 	
 	@Getter
 	@Setter
@@ -43,12 +39,14 @@ public class InvoiceEntity {
 	}
 
 //	occurs when partial deliverly of product is their
-	
-	@ManyToOne
-	@JoinColumn(name = "po_no")
-	private PoEntity po;
 	@OneToOne
-	@JoinColumn(name = "grn_id")
-	private GrnEntity grn;
-
+	@JoinColumn(name = "grn_items")
+	private GrnItem grnitems;
+	
+	@Column(name="InvoiceAmount")
+	private Long Amount;
+	
+	
+	
+	
 }

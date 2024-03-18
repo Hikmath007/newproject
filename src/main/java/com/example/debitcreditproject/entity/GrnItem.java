@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -21,7 +22,19 @@ public class GrnItem {
 	@ManyToOne
 	@JoinColumn(name = "grn_id")
 	private GrnEntity grn;
+    
+	@ManyToOne
+	@JoinColumn(name = "po_itemid")
+	private PoItem poitem;
+	
+	
+	@Column(name="dispatchedquantity")
+	private Long dispatchedquantity;
+	
+	@Column(name="AcceptedQuantity")
+	private long acceptedquantity;
+	
+	@OneToOne(mappedBy = "grnitems")
+	private InvoiceEntity invoice;
 
-	@Column(name = "po_items")
-	private Long poitem;
 }

@@ -1,14 +1,10 @@
 package com.example.debitcreditproject.entity;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+
 
 @Data
 @Entity
@@ -16,15 +12,29 @@ import lombok.Data;
 public class PoItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="po_Itemid")
 	private Long id;
 
-	@Column(name = "po_items")
-	private Long poItems;
 	@ManyToOne
-	@JoinColumn(name = "purchase_order_id")
-	private PoEntity poItem;
+	@JoinColumn(name = "Po_id")
+	private PoEntity poid;
 
 	@ManyToOne
-	@JoinColumn(name = "material_id")
+	@JoinColumn(name = "material_code")
 	private MaterialEntity poItemMaterial;
+	
+
+    @JoinColumn(name = "price")
+    private Long price; 
+	
+	@Column(name="Quantity")
+	private Long quantity;
+	
+	
+	@OneToMany(mappedBy = "poitem")
+	private List<GrnItem> grn_items;
+	
+	@OneToOne(mappedBy = "poitems")
+    private RateEntity poItem;
+	
 }

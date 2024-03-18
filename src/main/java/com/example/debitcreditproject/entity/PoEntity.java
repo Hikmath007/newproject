@@ -14,19 +14,16 @@ import lombok.Data;
 @Entity
 public class PoEntity {
 	@Id
-	@Column(name = "po_no", length = 12)
+	@Column(name = "po_id", length = 12)
 	private String poNumber;
 	
 	@ManyToOne
 	@JoinColumn(name = "vendor_code")
 	private VendorEntity vendor;
-
-
-	@OneToMany(mappedBy = "po")
-	private List<GrnEntity> grns;
-
-	@OneToMany(mappedBy = "po")
-	private List<InvoiceEntity> invoices;
-
-
+	
+	@OneToMany(mappedBy = "poid")
+	private List<PoItem> poitems;
+	
+    
+	
 }
